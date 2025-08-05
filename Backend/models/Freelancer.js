@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { stringify } from "querystring";
 
 const freelancerSchema = new mongoose.Schema({
 
@@ -17,6 +18,11 @@ const freelancerSchema = new mongoose.Schema({
     about: {
         type: String,
         default: ""
+    },
+
+    github:{
+        type:String,
+        default:""
     },
 
     location: {

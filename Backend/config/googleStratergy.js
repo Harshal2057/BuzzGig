@@ -9,7 +9,7 @@ import User from "../models/User.js";//User model
 passport.use("google", new GoogleStrategy({
   
     clientID:  process.env.GOOGLE_CLIENT_ID ,
-    clientSecret:  process.env.GOOGLE_C  LIENT_SECRET,
+    clientSecret:  process.env.GOOGLE_CLIENT_SECRET,
     callbackURL: "http://localhost:4000/api/auth/google/choose-role",
     userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo",
   },
