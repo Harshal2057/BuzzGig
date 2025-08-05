@@ -8,6 +8,11 @@ const clientSchema = new mongoose.Schema({
         required:true
     },
 
+    fullName:{
+        type:String,
+        required:true
+    },
+
     contact:{
         type:String,
         required:true,
@@ -17,6 +22,11 @@ const clientSchema = new mongoose.Schema({
             },
              message: "Contact number must be a valid 10-digit number"
         }
+    },
+
+    email:{
+        type:String,
+        required:true
     },
 
     address:{

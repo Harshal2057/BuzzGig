@@ -2,7 +2,65 @@ import uploadPhoto from "../utils/photoUpload.js";
 import User from "../models/User.js";
 import Freelancer from "../models/Freelancer.js";
 import Project from "../models/Project.js";
+import Client from "../models/Client.js";
 
+
+const clientProfile = async(req ,res) => {
+
+    try {
+        
+        const user = req.user;
+
+        if (user.role !== "client") {
+            return res.status(400).json({
+                success:false,
+                message:"This is a protected route for Client"
+            })
+        }
+
+        const {contact , address } = req.body;
+       
+
+        if (!contact || !address) {
+            return res.status(400).json({
+                success:false,
+                message:"Please fill required fields"
+            })
+        }
+
+
+        const newProfile = await Client.create({
+            UserId:user._id,
+            fullName:user.name,
+            contact,
+            address,
+            email:user.email,
+        })
+
+        if (!newProfile) {
+            return res.status(400).json({
+                success:false,
+                message:"Error occured while creating Client profile"
+            })
+        }
+
+        console.log("Client profile created !!");
+
+        return res.status(200).json({
+            success:true,
+            message:"Client Profile created successfully",
+           profile: newProfile
+        })
+        
+
+    } catch (error) {
+        return res.status(400).json({
+            success:false,
+            message:`Error occured while creating Client profile =>  ${error}`
+        })
+    }
+
+}
 
 const profilePic = async (req, res) => {
     try {
@@ -298,4 +356,4 @@ const freelancerProject = async(req ,res) => {
 
 }
 
-export { profilePic, backgroundPic, freelancerProfile ,freelancerInfo , freelancerProject};
+export {clientProfile, profilePic, backgroundPic, freelancerProfile ,freelancerInfo , freelancerProject};
