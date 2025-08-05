@@ -2,9 +2,13 @@ import validator from "validator"
 import bcrypt from "bcrypt"
 import generateToken from "../utils/Token.js";
 
+
+
 //Local
 import User from "../models/User.js";
+import Freelancer from "../models/Freelancer.js";
 
+//Register
 const signUp = async (req, res) => {
 
     const saltRounds = 10;
@@ -40,7 +44,7 @@ const signUp = async (req, res) => {
                 success: false,
                 message: "User already existed , Please try logging in "
             })
-        }
+        }//To do : Redirect to login
 
         if (password.length < 6) {
             return res.status(400).json({
@@ -83,6 +87,7 @@ const signUp = async (req, res) => {
     }
 }
 
+//Local login
 const login = async (req, res) => {
     try {
 
@@ -151,7 +156,7 @@ const checkAuth = async (req, res) => {
     }
 }
 
-const logOUt = async (res) => {
+const logOUt = async (req ,res) => {
     try {
         //Clearing cookie
         res.cookie("jwtToken", "", { maxAge: 0, expires: new Date(0) });
@@ -181,7 +186,7 @@ const updateRole = async (req, res) => {
             });
         }
 
-        const allowedRoles = ["client", "freelancer"];
+        const allowedRoles = ["client", "fre     elancer"];
         if (!allowedRoles.includes(role)) {
             return res.status(400).json({
                 success: false,
@@ -200,18 +205,30 @@ const updateRole = async (req, res) => {
             { new: true }
         )
 
-        if (updatedUser) {
+              if (!updatedUser) {
+            return res.status(404).json({
+                success: false,
+                message: "User not found"
+            });
+        }
+
+      if (role === "freelancer") {
+        const existingFreelancer = await Freelancer.findOne({userId: user._id});
+
+        if (!existingFreelancer) {
+            await Freelancer.create({
+                userId:user._id
+            })
+        }
+
+      }
+
             return res.status(201).json({
                 success: true,
                 message: "User role updated successfully !!",
                 user: updatedUser
             })
-        }else {
-      return res.status(404).json({
-        success: false,
-        message: "User not found"
-      });
-    }
+        
 
 
     } catch (error) {
