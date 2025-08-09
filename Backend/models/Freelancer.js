@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import { stringify } from "querystring";
 
 const freelancerSchema = new mongoose.Schema({
 
@@ -7,6 +6,14 @@ const freelancerSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
         required: true
+    },
+
+    name:{
+        type:String
+    },
+
+    email:{
+        type:String
     },
 
     contact: {

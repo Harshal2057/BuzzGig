@@ -5,7 +5,7 @@ import Project from "../models/Project.js";
 import Client from "../models/Client.js";
 
 
-const clientProfile = async(req ,res) => {
+const updateClientProfile = async(req ,res) => {
 
     try {
         
@@ -19,44 +19,40 @@ const clientProfile = async(req ,res) => {
         }
 
         const {contact , address } = req.body;
+
+        if (!contact && !address) {
+            return res.status(401).json({
+                success:false,
+                message:"Atleast fill any one field to update"
+            })
+        }
        
+        const updateObj = { $set:{}};
 
-        if (!contact || !address) {
-            return res.status(400).json({
-                success:false,
-                message:"Please fill required fields"
-            })
+        if (contact != undefined) {
+            updateObj.$set.contact = contact
+        }
+
+        if(address != undefined){
+            updateObj.$set.address = address
         }
 
 
-        const newProfile = await Client.create({
-            UserId:user._id,
-            fullName:user.name,
-            contact,
-            address,
-            email:user.email,
-        })
-
-        if (!newProfile) {
-            return res.status(400).json({
-                success:false,
-                message:"Error occured while creating Client profile"
-            })
-        }
-
-        console.log("Client profile created !!");
+        const updateClient = await Client.updateOne(
+            {userId:user._id},
+            updateObj
+        )
 
         return res.status(200).json({
             success:true,
-            message:"Client Profile created successfully",
-           profile: newProfile
+            message:"Client updated successfully",
+            updateClient
         })
-        
 
     } catch (error) {
         return res.status(400).json({
             success:false,
-            message:`Error occured while creating Client profile =>  ${error}`
+            message:`Error occured while updating client =>  ${error}`
         })
     }
 
@@ -242,6 +238,13 @@ const freelancerInfo = async (req, res) => {
             })
         }
 
+        if (user.role !== "freelancer") {
+            return res.status(401).json({
+                success:false,
+                message:"Protected Route for Freelancer"
+            })
+        }
+
         const freelancer = await Freelancer.findOne({ userId: user._id });
 
         if (!freelancer) {
@@ -253,11 +256,13 @@ const freelancerInfo = async (req, res) => {
 
         const {about , skills , education} = req.body;
 
-        const updatedObj = {};
+        const updateObj = {};
 
-        if (about !== undefined) {
-            updatedObj.$set = {about}
-        }
+if (about !== undefined) {
+    updateObj.$set = updateObj.$set || {};
+    updateObj.$set.about = about;
+}
+
 
        if (Array.isArray(skills) && skills.length > 0) {
   updateObj.$push = updateObj.$push || {};
@@ -273,9 +278,7 @@ if (Array.isArray(education) && education.length > 0) {
 
         const updateFreelancer = await Freelancer.findByIdAndUpdate(
             freelancer._id,
-            {
-                $set:updatedObj
-            },
+            updateObj,
             {new:true}
         )
 
@@ -287,7 +290,7 @@ if (Array.isArray(education) && education.length > 0) {
         }
 
     } catch (error) {
-            return res.status(501).jsom({
+            return res.status(501).json({
                 success:false,
                 message:`Error occured while updating about => ${error}`
             })
@@ -298,15 +301,31 @@ const freelancerProject = async(req ,res) => {
 
     try {
         
-        const {proj_name , proj_url ,proj_desc } = req.body;
         const user = req.user;
 
-        if (!proj_name || !proj_url || !proj_desc) {
-            return res.status(400).json({
+        if (!user) {
+            return res.status(401).json({
                 success:false,
-                message:"Please fill the required filled"
+                message:"Unauthorized user"
             })
         }
+
+        if (user.role !== "freelancer") {
+            return res.status(400).json({
+                success:false,
+                message:"This is protected Route for freelancer"
+            })
+        }
+
+        const {proj_name , proj_url ,proj_desc } = req.body;
+
+     if (![proj_name, proj_url, proj_desc].every(field => field && field.trim())) {
+    return res.status(400).json({
+        success: false,
+        message: "Please fill all the required fields"
+    });
+}
+
 
         const newProject = await Project.create({
             userId:user._id,
@@ -315,17 +334,10 @@ const freelancerProject = async(req ,res) => {
             proj_desc:proj_desc
         })
 
-        if (!newProject) {
-            return res.status(400).json({
-                success: false,
-                message: "Error occurred while creating Project"
-            });
-        }
-
         console.log("Project created successfully");
 
         const addProject = await Freelancer.findOneAndUpdate(
-           {UserId : user.id},
+           {userId : user._id},
             {
                 $push:{
                     projects:newProject._id
@@ -356,4 +368,4 @@ const freelancerProject = async(req ,res) => {
 
 }
 
-export {clientProfile, profilePic, backgroundPic, freelancerProfile ,freelancerInfo , freelancerProject};
+export {updateClientProfile, profilePic, backgroundPic, freelancerProfile ,freelancerInfo , freelancerProject};

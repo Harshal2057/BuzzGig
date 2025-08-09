@@ -15,7 +15,6 @@ const clientSchema = new mongoose.Schema({
 
     contact:{
         type:String,
-        required:true,
         validate:{
             validator: function(value) {
              return /^[0-9]{10}$/.test(value);
@@ -31,8 +30,12 @@ const clientSchema = new mongoose.Schema({
 
     address:{
         type:String,
-        required:true
     },
+
+    jobs:[
+         {type:mongoose.Schema.Types.ObjectId,
+        ref:"Job"}
+    ],
 
     completedJob:[{
         type:mongoose.Schema.Types.ObjectId,

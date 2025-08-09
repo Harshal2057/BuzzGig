@@ -7,6 +7,7 @@ import generateToken from "../utils/Token.js";
 //Local
 import User from "../models/User.js";
 import Freelancer from "../models/Freelancer.js";
+import Client from "../models/Client.js";
 
 //Register
 const signUp = async (req, res) => {
@@ -186,7 +187,7 @@ const updateRole = async (req, res) => {
             });
         }
 
-        const allowedRoles = ["client", "fre     elancer"];
+        const allowedRoles = ["client", "freelancer"];
         if (!allowedRoles.includes(role)) {
             return res.status(400).json({
                 success: false,
@@ -217,7 +218,21 @@ const updateRole = async (req, res) => {
 
         if (!existingFreelancer) {
             await Freelancer.create({
-                userId:user._id
+                userId:user._id,
+                name:user.name,
+                email:user.email
+            })
+        }
+
+      }else if (role == "client") {
+        
+        const existingClient = await Client.findOne({userId:user._id});
+
+        if (!existingClient) {
+            await Client.create({
+                userId:user._id,
+                fullName:user.name,
+                email:user.email
             })
         }
 
@@ -232,6 +247,8 @@ const updateRole = async (req, res) => {
 
 
     } catch (error) {
+        console.log(error);
+        
         return res.status(500).json({
             success: false,
             message: `Error occured while updating role => ${error}`

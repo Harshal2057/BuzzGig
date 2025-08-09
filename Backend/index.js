@@ -5,6 +5,7 @@ import cookieParser from "cookie-parser";
 import session from "express-session";
 import passport from "passport"
 
+
 //Local
 import { dbConnect } from "./config/database.js";
 import cloudinaryConnect from "./config/cloudinary.js";
@@ -13,6 +14,7 @@ import "./config/googleStratergy.js";
 //Routes
 import authRouter from "./routes/auth.routes.js";
 import profileRouter from "./routes/profile.routes.js";
+import jobRouter from "./routes/job.routes.js";
 
 dotenv.config();
 
@@ -30,6 +32,7 @@ app.use(session({
   saveUninitialized: false,
 }));
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(passport.initialize());
 app.use(passport.session());
@@ -41,6 +44,7 @@ app.use(fileUpload({
 //Routes
 app.use("/api/auth" , authRouter);
 app.use("/api/profile" , profileRouter);
+app.use("/api/job" , jobRouter);
 
 app.use("/" , (req , res) => {
     res.send('<a href="/api/auth/google">Sign In with Google</a>');
