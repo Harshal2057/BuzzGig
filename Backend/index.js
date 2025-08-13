@@ -15,6 +15,7 @@ import "./config/googleStratergy.js";
 import authRouter from "./routes/auth.routes.js";
 import profileRouter from "./routes/profile.routes.js";
 import jobRouter from "./routes/job.routes.js";
+import findJobRouter from "./routes/findjob.routes.js";
 
 dotenv.config();
 
@@ -45,6 +46,7 @@ app.use(fileUpload({
 app.use("/api/auth" , authRouter);
 app.use("/api/profile" , profileRouter);
 app.use("/api/job" , jobRouter);
+app.use("/api/findjob" , findJobRouter);
 
 app.use("/" , (req , res) => {
     res.send('<a href="/api/auth/google">Sign In with Google</a>');
