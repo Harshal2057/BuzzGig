@@ -4,8 +4,6 @@ import Girl_crop from "./girl_crop.png"
 import shoulder from "./CreativeShoulders.svg"
 import shoulderStrokeThree from "./ShoulderStrokeThree.svg"
 import shoulderStrokeFour from "./ShoulderStrokeFour.svg"
-import BuzzGigVid from "./BuzzGigVid.mp4"
-import BuzzGigVidTwo from "./BuzzGigVidTwo.mp4"
 import rotateicon from "./rotate.svg"
 import bullet from "./bullet_bg.png"
 import bulletTwo from "./bullet_two.png"
@@ -33,6 +31,13 @@ import ideas from "./Ideas.svg"
 import imgRev from "./imgRev_1.jpg"
 import imgRev_2 from "./imgRev_2.jpeg"
 import imgRev_3 from "./imgRev_3.png"
+import bulletStroke from "./bulletStroke.svg"
+import bulletThree from "./bulletThree.svg"
+import star from "./star.png"
+
+
+import { faMeta , faWindows , faAirbnb , faAmazon , faShopify , faDiscord  } from "@fortawesome/free-brands-svg-icons";
+
 
 const assets = {
     BuzzGig_Logo,
@@ -40,8 +45,6 @@ const assets = {
     Girl_crop,
     shoulder,
     shoulderStrokeThree,
-    BuzzGigVid,
-    BuzzGigVidTwo,
     rotateicon,
     bullet,
     bulletTwo,
@@ -63,17 +66,64 @@ const assets = {
     ideas,
     imgRev,
     imgRev_2,
-    imgRev_3
+    imgRev_3,
+    bulletStroke,
+    bulletThree,
+    star
 }
 
 const logos = [
-    logo_1,
-    logo_2,
-    logo_3,
-    logo_4,
-    logo_5,
-    logo_6
-
+    faMeta,
+    faWindows,
+    faAirbnb,
+    faAmazon,
+    faShopify,
+    faDiscord
 ]
 
-export  {assets , logos};
+const reviews = [
+  {
+    id: 1,
+    name: "Alice Johnson",
+    userType: "client",
+    review: "BuzzGig made hiring freelancers so simple and stress-free. I was able to post my project, review portfolios, and hire a talented designer within a single day. The entire process felt smooth, transparent, and efficient.",
+    image: "https://randomuser.me/api/portraits/women/44.jpg",
+    rating: 5
+  },
+  {
+    id: 2,
+    name: "David Smith",
+    userType: "freelancer",
+    review: "As a freelancer, I appreciate how easy BuzzGig makes it to showcase my skills, build a profile, and connect with professional clients. The platform feels secure, reliable, and has helped me grow significantly.",
+    image: "https://randomuser.me/api/portraits/men/32.jpg",
+    rating: 4
+  },
+  {
+    id: 3,
+    name: "Sophia Martinez",
+    userType: "client",
+    review: "I’ve worked with multiple freelancers through BuzzGig and each experience has been seamless. The platform ensures quality, quick communication, and secure transactions, giving me confidence every time I start a new project.",
+    image: "https://randomuser.me/api/portraits/women/65.jpg",
+    rating: 3
+  },
+  {
+    id: 4,
+    name: "James Lee",
+    userType: "freelancer",
+    review: "BuzzGig helped me grow my freelancing career tremendously. With consistent projects and professional clients, I now have steady work, greater exposure, and opportunities that align perfectly with my skills and long-term goals.",
+    image: "https://randomuser.me/api/portraits/men/28.jpg",
+    rating: 4
+  },
+  {
+    id: 5,
+    name: "Olivia Brown",
+    userType: "client",
+    review: "The platform always provides reliable freelancers and ensures secure payments. I never worry about trust or deadlines, because BuzzGig makes the entire hiring process simple, professional, and stress-free for clients like me.",
+    image: "https://randomuser.me/api/portraits/women/22.jpg",
+    rating: 5
+  }
+];
+
+
+
+export  {assets , logos , reviews};

@@ -1,6 +1,6 @@
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
-import { useRef, useLayoutEffect } from "react";
+import { useRef } from "react";
 import CountUp from "./CountUp.jsx";
 
 const Progressbar = ({
@@ -8,22 +8,29 @@ const Progressbar = ({
   width = "w-[320px]",
   height = "h-6",
   backgroundColor = "bg-black",
+  start = false
 }) => {
   const containerRef = useRef(null);
   const progressRef = useRef(null);
 
   useGSAP(() => {
+    if (!start) return; // Don't animate if start is false
+    
     if (containerRef.current && progressRef.current) {
       const containerWidth = containerRef.current.offsetWidth; // in px
       const percentageToPixel = (percentage / 100) * containerWidth;
 
+      // Reset the width to 0 before animating
+      gsap.set(progressRef.current, { width: "0px" });
+
+      // Animate to the target width
       gsap.to(progressRef.current, {
         width: `${percentageToPixel}px`,
         duration: 2,
         ease: "power2.out",
       });
     }
-  });
+  }, [start, percentage]); // Include 'start' in dependencies so it re-runs when start changes
 
   return (
     <div className="flex flex-col">
@@ -34,6 +41,7 @@ const Progressbar = ({
           animation="easeOutExpo"
           color="#000000"
           className=" font-anton"
+          start={start}
         />
       </div>
       <div className="relative">

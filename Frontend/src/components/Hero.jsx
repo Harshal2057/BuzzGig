@@ -170,7 +170,7 @@ const Hero = () => {
       {/* Count up */}
       <div
         ref={countRef}
-        className="hidden  sm:absolute top-[7%] left-[5%] sm:flex flex-col gap-12"
+        className="hidden  sm:absolute top-[22%] left-[5%] sm:flex flex-col gap-12"
       >
         {/* Happy Client */}
         <div ref={countOne} className="border-b-4 border-yellow-100">
