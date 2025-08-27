@@ -5,14 +5,14 @@ import Marquee from "react-fast-marquee";
 import { reviews } from "../assets/assets";
 
 
-const Cards = ({ rating , text , profilePic , name}) => {
+const Cards = ({bgColor  , starColor ,  rating , text , profilePic , name}) => {
     return (
-      <div className="bg-blue-100 h-[350px] w-[700px] mx-4 p-10 flex flex-col justify-between rounded-3xl">
+      <div className={`${bgColor} h-[350px] w-[700px] mx-4 p-10 flex flex-col justify-between rounded-3xl`}>
         
         {/* Top Section (Rating) */}
         <div className="flex gap-3">
           {Array.from({ length: rating }).map((_, i) => (
-            <img key={i} src={assets.star} className="size-5" />
+            <img key={i} src={starColor === "yellow" ? assets.star : assets.bluestar} className="size-5" />
           ))}
         </div>
 
@@ -28,14 +28,13 @@ const Cards = ({ rating , text , profilePic , name}) => {
             <p className="font-outfit font-semibold text-blue-75 text-2xl">{name}</p>
           </div>
 
-          <div className="text-8xl font-anton text-transparent text-stroke-yellowBold leading-none">
+          <div className={`text-8xl font-anton text-transparent ${starColor === "yellow" ? "text-stroke-yellowBold" :" text-stroke-blueBold"} leading-none`}>
             <p>,,</p>
           </div>
         </div>
       </div>
     );
 };
-
 
 
 const Testimonals = () => {
@@ -71,7 +70,7 @@ const Testimonals = () => {
             <Marquee
             pauseOnHover={true}           >
                   {reviews.map((review , index) => {
-                     return <Cards key={index} rating={review.rating} text={review.review} profilePic={review.image} name={review.name}/>
+                     return <Cards key={index} rating={review.rating} text={review.review} profilePic={review.image} name={review.name} bgColor={review.bgColor} starColor={review.startColor}/>
                   })}
             </Marquee>
         </div>

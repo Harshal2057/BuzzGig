@@ -34,9 +34,11 @@ import imgRev_3 from "./imgRev_3.png"
 import bulletStroke from "./bulletStroke.svg"
 import bulletThree from "./bulletThree.svg"
 import star from "./star.png"
+import bluestar from "./bluestar.png"
 
 
-import { faMeta , faWindows , faAirbnb , faAmazon , faShopify , faDiscord  } from "@fortawesome/free-brands-svg-icons";
+import { faMeta , faWindows , faAirbnb , faAmazon , faShopify , faDiscord , faHtml5 , faFigma } from "@fortawesome/free-brands-svg-icons";
+import { faFilePen ,  faCode , faDatabase , faLightbulb , faShieldHalved , faTasks} from '@fortawesome/free-solid-svg-icons'
 
 
 const assets = {
@@ -69,7 +71,8 @@ const assets = {
     imgRev_3,
     bulletStroke,
     bulletThree,
-    star
+    star,
+    bluestar
 }
 
 const logos = [
@@ -88,7 +91,9 @@ const reviews = [
     userType: "client",
     review: "BuzzGig made hiring freelancers so simple and stress-free. I was able to post my project, review portfolios, and hire a talented designer within a single day. The entire process felt smooth, transparent, and efficient.",
     image: "https://randomuser.me/api/portraits/women/44.jpg",
-    rating: 5
+    rating: 5,
+    bgColor: "bg-blue-100",
+    startColor: "yellow"
   },
   {
     id: 2,
@@ -96,7 +101,9 @@ const reviews = [
     userType: "freelancer",
     review: "As a freelancer, I appreciate how easy BuzzGig makes it to showcase my skills, build a profile, and connect with professional clients. The platform feels secure, reliable, and has helped me grow significantly.",
     image: "https://randomuser.me/api/portraits/men/32.jpg",
-    rating: 4
+    rating: 4,
+    bgColor: "bg-yellow-100",
+    startColor: "blue"
   },
   {
     id: 3,
@@ -104,7 +111,9 @@ const reviews = [
     userType: "client",
     review: "I’ve worked with multiple freelancers through BuzzGig and each experience has been seamless. The platform ensures quality, quick communication, and secure transactions, giving me confidence every time I start a new project.",
     image: "https://randomuser.me/api/portraits/women/65.jpg",
-    rating: 3
+    rating: 3,
+    bgColor: "bg-blue-100",
+    startColor: "yellow"
   },
   {
     id: 4,
@@ -112,7 +121,9 @@ const reviews = [
     userType: "freelancer",
     review: "BuzzGig helped me grow my freelancing career tremendously. With consistent projects and professional clients, I now have steady work, greater exposure, and opportunities that align perfectly with my skills and long-term goals.",
     image: "https://randomuser.me/api/portraits/men/28.jpg",
-    rating: 4
+    rating: 4,
+    bgColor: "bg-yellow-100",
+    startColor: "blue"
   },
   {
     id: 5,
@@ -120,10 +131,84 @@ const reviews = [
     userType: "client",
     review: "The platform always provides reliable freelancers and ensures secure payments. I never worry about trust or deadlines, because BuzzGig makes the entire hiring process simple, professional, and stress-free for clients like me.",
     image: "https://randomuser.me/api/portraits/women/22.jpg",
-    rating: 5
+    rating: 5,
+    bgColor: "bg-blue-100",
+    startColor: "yellow"
+  },
+  {
+    id: 6,
+    name: "Ethan Wilson",
+    userType: "freelancer",
+    review: "BuzzGig has completely changed how I manage my freelance work. I can easily track projects, communicate with clients, and ensure payments are secure. It’s the best platform I’ve used so far for freelancing.",
+    image: "https://randomuser.me/api/portraits/men/45.jpg",
+    rating: 5,
+    bgColor: "bg-yellow-100",
+    startColor: "blue"
+  }
+];
+
+
+const jobFields = [
+  {
+    id: 1,
+    title: "Web Development",
+    description: "Design, build, and maintain websites or web applications using modern frameworks and tools.",
+    image: faHtml5,
+    button: "Explore Web Dev"
+  },
+  {
+    id: 2,
+    title: "Graphic Design",
+    description: "Create engaging visuals, logos, branding materials, and illustrations for businesses and individuals.",
+    image: faFigma,
+    button: "Explore Design"
+  },
+  {
+    id: 3,
+    title: "Content Writing",
+    description: "Write blogs, articles, scripts, and marketing content tailored for specific audiences and industries.",
+    image: faFilePen,
+    button: "Explore Writing"
+  },
+  {
+    id: 4,
+    title: "Digital Marketing",
+    description: "Promote businesses online using SEO, social media, ads, and content strategies to drive growth.",
+    image: faLightbulb, // replaced bulbInsideBrain with available faLightbulb
+    button: "Explore Marketing"
+  },
+  {
+    id: 5,
+    title: "Mobile App Development",
+    description: "Build responsive mobile applications for Android and iOS platforms using the latest technologies.",
+    image: faCode,
+    button: "Explore Mobile Dev"
+  },
+  {
+    id: 6,
+    title: "Data Analysis",
+    description: "Interpret and analyze data to provide insights, visualizations, and solutions for businesses.",
+    image: faDatabase,
+    button: "Explore Data"
+  },
+  {
+    id: 7,
+    title: "Cybersecurity",
+    description: "Protect systems, networks, and data from digital attacks with security tools and best practices.",
+    image: faShieldHalved,
+    button: "Explore Security"
+  },
+  {
+    id: 8,
+    title: "Project Management",
+    description: "Plan, execute, and manage projects efficiently to ensure timely delivery and collaboration.",
+    image: faTasks,
+    button: "Explore Management"
   }
 ];
 
 
 
-export  {assets , logos , reviews};
+
+
+export  {assets , logos , reviews , jobFields};

@@ -7,6 +7,7 @@ import WhatAreWe from "./components/WhatAreWe";
 import TextScreen from "./components/TextScreen.jsx";
 import Footer from "./components/Footer.jsx";
 import Testimonals from "./components/Testimonals.jsx";
+import Searching from "./components/Searching.jsx";
 
 function App() {
   const skills = [
@@ -86,6 +87,7 @@ function App() {
       {/* Other Sections */}
       <WhatweDo />
       <WhatAreWe />
+      <Searching />
       <TextScreen />
       <Testimonals />
       <Footer />

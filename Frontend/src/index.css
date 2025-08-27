@@ -49,6 +49,9 @@
   .text-stroke-yellowBold {
     -webkit-text-stroke: 3px #CAFA08;
   }
+   .text-stroke-blueBold {
+    -webkit-text-stroke: 3px #0A1FC2;
+  }
 }
 
 
