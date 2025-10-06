@@ -6,7 +6,7 @@ import shoulderStrokeThree from "./ShoulderStrokeThree.svg"
 import shoulderStrokeFour from "./ShoulderStrokeFour.svg"
 import rotateicon from "./rotate.svg"
 import bullet from "./bullet_bg.png"
-import bulletTwo from "./bullet_two.png"
+import bulletTwo from "./bullet_tw.png"
 import card_1 from "./card_1.jpg"
 import card_2 from "./card_2.jpeg"
 import card_3 from "./card_3.jpeg"
@@ -17,12 +17,6 @@ import HeroBackground from "./HeroBackground.png"
 import HeroBackgroundTwo from "./herobackgroundTwo.png"
 import Speaker from "./speaker.png"
 import quotes from "./quotes.png"
-import logo_1 from "./microsoft.png"
-import logo_2 from "./adobe.png"
-import logo_3 from "./airbnb.png"
-import logo_4 from "./meta.png"
-import logo_5 from "./google.png"
-import logo_6 from "./nvidia.png"
 import ava_1 from "./ava_1.jpeg"
 import ava_2 from "./ava_2.jpeg"
 import ava_3 from "./ava_3.jpeg"
@@ -35,53 +29,84 @@ import bulletStroke from "./bulletStroke.svg"
 import bulletThree from "./bulletThree.svg"
 import star from "./star.png"
 import bluestar from "./bluestar.png"
+import pricingImgOne from "./pricing_img.jpg"
+import pricingImgTwo from "./pricing_imgTwo.jpg"
+import loginImg from "./loginImg.jpeg"
+import loginBg from "./loginBackground.png"
+import SigninImg from "./SigninImg.jpeg"
+import RegisterImg from "./loginImgTwo.jpg"
+import ClientRole from "./ClientRole.png"
+import FreelancersRole from "./FreelancerRole.png"
+import ClientRoleWithShadow from "./ClientRoleWithShadow.png"
+import backgroundDefaultImg from "./backgroundDefaultImage.jpg"
+import userDefaultImage from "./userDefaultImage.jpeg"
+import SummaryImg from "./Summaryimage.svg"
+import TargetImg from "./Target.jpeg"
+import Books from "./books.jpeg"
+import ProjectIcon from "./ProjectIcon.jpeg"
+import fileUploaderImg from "./fileUploaderImg.png"
 
-
-import { faMeta , faWindows , faAirbnb , faAmazon , faShopify , faDiscord , faHtml5 , faFigma } from "@fortawesome/free-brands-svg-icons";
-import { faFilePen ,  faCode , faDatabase , faLightbulb , faShieldHalved , faTasks} from '@fortawesome/free-solid-svg-icons'
+import { faMeta, faWindows, faAirbnb, faAmazon, faShopify, faDiscord, faHtml5, faFigma } from "@fortawesome/free-brands-svg-icons";
+import { faFilePen, faCode, faDatabase, faLightbulb, faShieldHalved, faTasks } from '@fortawesome/free-solid-svg-icons'
 
 
 const assets = {
-    BuzzGig_Logo,
-    Girl_img,
-    Girl_crop,
-    shoulder,
-    shoulderStrokeThree,
-    rotateicon,
-    bullet,
-    bulletTwo,
-    shoulderStrokeFour,
-    card_1,
-    card_2,
-    card_3,
-    girl_two,
-    bulbInsideBrain,
-    eggShellBg,
-    HeroBackground,
-    HeroBackgroundTwo,
-    Speaker,
-    quotes,
-    ava_1,
-    ava_2,
-    ava_3,
-    ava_4,
-    ideas,
-    imgRev,
-    imgRev_2,
-    imgRev_3,
-    bulletStroke,
-    bulletThree,
-    star,
-    bluestar
+  BuzzGig_Logo,
+  Girl_img,
+  Girl_crop,
+  shoulder,
+  shoulderStrokeThree,
+  rotateicon,
+  bullet,
+  bulletTwo,
+  shoulderStrokeFour,
+  card_1,
+  card_2,
+  card_3,
+  girl_two,
+  bulbInsideBrain,
+  eggShellBg,
+  HeroBackground,
+  HeroBackgroundTwo,
+  Speaker,
+  quotes,
+  ava_1,
+  ava_2,
+  ava_3,
+  ava_4,
+  ideas,
+  imgRev,
+  imgRev_2,
+  imgRev_3,
+  bulletStroke,
+  bulletThree,
+  star,
+  bluestar,
+  pricingImgOne,
+  pricingImgTwo,
+  loginImg,
+  SigninImg,
+  loginBg,
+  RegisterImg,
+  ClientRole,
+  FreelancersRole,
+  ClientRoleWithShadow,
+  backgroundDefaultImg,
+  userDefaultImage,
+  SummaryImg,
+  TargetImg,
+  Books,
+  ProjectIcon,
+  fileUploaderImg
 }
 
 const logos = [
-    faMeta,
-    faWindows,
-    faAirbnb,
-    faAmazon,
-    faShopify,
-    faDiscord
+  faMeta,
+  faWindows,
+  faAirbnb,
+  faAmazon,
+  faShopify,
+  faDiscord
 ]
 
 const reviews = [
@@ -207,8 +232,50 @@ const jobFields = [
   }
 ];
 
+const pricingPlans = [
+  {
+    id: 1,
+    name: "Starter Spark",
+    price: "9",
+    idealFor: "Freelancers, hobbyists, or individuals who need essential tools to manage a few small projects effectively.",
+
+    features: [
+      "Access to basic features",
+      "Up to 5 projects",
+      "Email support",
+      "Basic analytics"
+    ]
+  },
+  {
+    id: 2,
+    name: "GROWTH IGNITE",
+    price: "29",
+    idealFor: "Small businesses and growing teams who require advanced tools, better support, and improved project management efficiency.",
+    features: [
+      "Everything in Starter",
+      "Up to 50 projects",
+      "Priority email & chat support",
+      "Advanced analytics",
+      "Custom branding"
+    ]
+  },
+  {
+    id: 3,
+    name: "ELITE VISIONARY",
+    price: "59",
+    idealFor: "Enterprises and scaling companies needing unlimited projects, premium support, integrations, and powerful team collaboration tools.",
+    features: [
+      "Everything in Pro",
+      "Unlimited projects",
+      "Dedicated account manager",
+      "24/7 phone support",
+      "Team collaboration tools",
+      "Integration with 3rd-party services"
+    ]
+  }
+];
 
 
 
 
-export  {assets , logos , reviews , jobFields};
+export { assets, logos, reviews, jobFields, pricingPlans };

@@ -47,10 +47,11 @@ const clientSchema = new mongoose.Schema({
         ref:"Job"
     }],
 
-    payment:{
-        type:String,
-        default:""
-    }
+paymentHistory: [{
+  amount: Number,
+  date: { type: Date, default: Date.now }
+}]
+
 
 },
     {timestamps:true}

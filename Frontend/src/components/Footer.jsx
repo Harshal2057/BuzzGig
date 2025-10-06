@@ -13,7 +13,7 @@ import Marquee from "react-fast-marquee";
 const Footer = () => {
   return (
     <div
-      className="min-h-screen w-screen overflow-hidden relative border-4" // Changed: overflow-hidden instead of overflow-x-hidden
+      className="min-h-screen w-screen overflow-hidden relative " // Changed: overflow-hidden instead of overflow-x-hidden
       style={{
         backgroundColor: "#252525",
         backgroundImage: `url(${assets.eggShellBg})`,

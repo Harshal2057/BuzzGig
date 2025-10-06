@@ -12,31 +12,19 @@ const jobSchema = new mongoose.Schema({
         required:true,
     },
 
-    tags:{
-        type:[String],
-        enum:[ // Job Types
-            "full-time", "part-time", "contract", "freelance", "internship", "remote", "hybrid", "on-site",
-            
-            // Industries
-            "software development", "data science", "marketing", "design", "finance", "healthcare", 
-            "education", "customer service", "sales", "engineering", "human resources", "legal", 
-            "project management", "manufacturing", "real estate",
-        
-            // Programming & Tech Skills
-            "JavaScript", "Python", "React", "Node.js", "MongoDB", "SQL", "AWS", "Docker", "DevOps", 
-            "UI/UX", "Machine Learning", "Cybersecurity", "Swift", "Kotlin", "Flutter", "C++", "Rust",
-        
-            // Soft Skills
-            "communication", "leadership", "teamwork", "problem-solving", "critical thinking", 
-            "time management", "adaptability",
-        
-            // Salary Preferences
-            "hourly", "fixed-price", "commission-based", "equity-based"]
-    },
+  tags: {
+    type: [String],
+    default: [],
+  },
+
+ skills: {
+    type: [String],
+    default: [],
+  },
 
     mode:{
         type:String,
-        enum:["remote" , "on-location"],
+        enum:["Remote" , "on-location"],
         required:true,
         index:true
     },
@@ -57,8 +45,13 @@ const jobSchema = new mongoose.Schema({
 
      salaryType:{
         type:String,
-        enum:["hourly" , "fixed-rate"],
+        enum:["hourly" , "fixed"],
         required:true
+    },
+
+    experienceLevel:{
+        type:String,
+        enum:["entry" , "intermediate" , "professional"]
     },
 
     postedBy:{
@@ -71,6 +64,15 @@ const jobSchema = new mongoose.Schema({
     budget:{
         type:Number,
         required:true
+    },
+
+    duration:{
+        type:String,
+        required:true
+    },
+
+    deadline:{
+        type:String
     },
 
     startDate:{

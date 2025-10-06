@@ -89,7 +89,7 @@ const signUp = async (req, res) => {
 }
 
 //Local login
-const login = async (req, res) => {
+const login = async(req, res) => {
     try {
 
         let { email, password } = req.body;
@@ -127,12 +127,16 @@ const login = async (req, res) => {
 
         //Generate token
 
-        const token = generateToken(checkUser._id, res)
+        const token =await generateToken(checkUser._id, res)
+          if (!token) {
+      return res.status(500).json({ message: "Error generating token" });
+    }
 
         return res.status(201).json({
             success: true,
             message: "User logged in successfully ",
-            token
+            token,
+            user: checkUser
         })
 
 
@@ -157,22 +161,26 @@ const checkAuth = async (req, res) => {
     }
 }
 
-const logOUt = async (req ,res) => {
-    try {
-        //Clearing cookie
-        res.cookie("jwtToken", "", { maxAge: 0, expires: new Date(0) });
+const logOUt = async (req, res) => {
+  try {
+    res.clearCookie("jwtToken", {
+      httpOnly: true,
+      secure: process.env.NODE_ENV !== "development",
+      sameSite: "strict",
+    });
 
-        return res.status(200).json({
-            success: true,
-            message: "User logged out successfully"
-        })
-    } catch (error) {
-        return res.status(500).json({
-            success: false,
-            message: `Error occured in checkAuth => ${error}`
-        })
-    }
-}
+    return res.status(200).json({
+      success: true,
+      message: "User logged out successfully",
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: `Error occurred in logout => ${error}`,
+    });
+  }
+};
+
 
 const updateRole = async (req, res) => {
     try {

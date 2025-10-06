@@ -4,6 +4,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
 @import "tailwindcss";
+@plugin "daisyui";
 @import "../src/components/lightswind.css";
 
 
@@ -20,19 +21,31 @@
 
     /* custom color */
     --color-blue-50: #dfdff0;
-    --color-blue-75: #dfdff2;
+    --color-blue-75: #6BCCFD;
+    --color-blue-85: #1A76FF;
     --color-blue-100: #0A1FC2;
     --color-blue-200: #010101;
     --color-blue-300: #4FB7DD;
+    --color-blue-980: #000B58;
+    --color-blue-1000: #19183B;
 
     --color-yellow-100: #CAFA08;  
     --color-yellow-300: #edff66;
 
+    
+    --color-purple-75: #F5F3FF;
     --color-violet-300: #5724ff;
     
+    --color-gray-50: #c0c0c0;
     --color-gray-100: #313131;
     --color-gray-300: #646464;
     --color-gray-400: #252525;
+
+
+    --color-white-100: #F8F8FF;
+
+    --color-green-10: #98FB98;
+
 
 }
 
@@ -53,6 +66,17 @@
     -webkit-text-stroke: 3px #0A1FC2;
   }
 }
+
+/* index.css */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none; /* for Chrome, Safari, Opera */
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* for Internet Explorer, Edge */
+  scrollbar-width: none;     /* for Firefox */
+}
+
 
 
 @keyframes marqueeStep {

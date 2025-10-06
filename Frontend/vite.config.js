@@ -6,6 +6,7 @@ import svgr from '@svgr/rollup'
 export default defineConfig({
   plugins: [
     react(),
+    
     tailwindcss({
       theme: {
         extend: {
@@ -19,4 +20,7 @@ export default defineConfig({
       include: '**/*.svg?react',
     }),
   ],
+    server: {
+    historyApiFallback: true, // 👈 ensures React Router works on refresh
+  },
 })

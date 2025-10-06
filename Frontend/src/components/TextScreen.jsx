@@ -1,29 +1,30 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef , useEffect } from "react";
 import { assets } from "../assets/assets";
 import ImgRev from "../utils/ImgRev.jsx";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 
+
 gsap.registerPlugin(ScrollTrigger);
 
 const TextScreen = () => {
-  const [hovered, setHovered] = useState(false);
-  const containerRef = useRef(null);
+
+const containerRef = useRef(null);
 
 
 
   return (
     <div
-      ref={containerRef}
+    ref={containerRef}
       className="min-h-screen w-screen overflow-x-hidden flex justify-center items-center"
       style={{
         backgroundColor: "#252525",
         backgroundImage: `url(${assets.eggShellBg})`,
       }}
     >
-      <div className="w-5/6 text-7xl text-white font-banger text-center leading-22">
-        <div className="">
+      <div  className="w-5/6 text-7xl text-white font-banger text-center leading-22 ">
+        <div  className="">
           <span className="line">
             "A space where{" "}
             <div className="bg-blue-100 w-fit p-3 rounded-full inline-flex -rotate-2 transition-all hover:rotate-0">

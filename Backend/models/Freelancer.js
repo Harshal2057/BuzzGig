@@ -8,18 +8,18 @@ const freelancerSchema = new mongoose.Schema({
         required: true
     },
 
-    name:{
-        type:String
+    name: {
+        type: String
     },
 
-    email:{
-        type:String
+    email: {
+        type: String
     },
 
     contact: {
         type: String,
         default: "",
-         match: [/^\d{10}$/, 'Contact must be a 10-digit number']
+        match: [/^\d{10}$/, 'Contact must be a 10-digit number']
     },
 
     about: {
@@ -27,25 +27,36 @@ const freelancerSchema = new mongoose.Schema({
         default: ""
     },
 
-    github:{
-        type:String,
-        default:""
-    },
-
-    location: {
+    github: {
         type: String,
         default: ""
     },
 
-    backgroundPic: {
-        type: String,
-        default:""
+    location: {
+        country: { type: String },
+        city: { type: String }
     },
 
-    education: {
-        type: [String],
-        default: []
+    backgroundPic: {
+        type: String,
+        default: ""
     },
+
+    education: [
+        {
+            school: { type: String, required: true },
+            degree: { type: String, required: true },
+            field: { type: String, required: true },
+            startDate: {
+                month: { type: String, required: true },
+                year: { type: Number, required: true }
+            },
+            endDate: {
+                month: { type: String },
+                year: { type: Number }
+            }
+        }
+    ],
 
     skills: {
         type: [String],
@@ -53,27 +64,46 @@ const freelancerSchema = new mongoose.Schema({
     },
 
     projects: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Project"
+        proj_name: {
+            type: String,
+            required: true
+        },
+
+        proj_url: {
+            type: String,
+            required: true
+        },
+
+        proj_desc: {
+            type: String,
+            required: true
+        },
     }],
 
     bids: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: "Bid"
     }],
+
     assignedJobs: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: "Job"
     }],
+
     completedJobs: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: "Job"
     }],
+    
     pendingJobs: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: "Job"
     }],
 
+    favJobs:[{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Job"
+    }],
 
     earning: {
         type: Number,
@@ -81,7 +111,7 @@ const freelancerSchema = new mongoose.Schema({
     }
 
 },
-{timestamps:true}
+    { timestamps: true }
 )
 
-export default mongoose.model("Freelancer" , freelancerSchema);
+export default mongoose.model("Freelancer", freelancerSchema);

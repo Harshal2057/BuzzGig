@@ -1,9 +1,20 @@
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
+import {BrowserRouter} from "react-router-dom"
+import StoreContextProvider from './context/StoreContext.jsx'
+import JobStoreContextProvider from './context/JobStore.jsx'
+import SocketContextProvider from './context/SocketContext.jsx'
 
 createRoot(document.getElementById('root')).render(
- 
-    <App />
-  
+<BrowserRouter>
+  <StoreContextProvider>
+    <JobStoreContextProvider>
+      <SocketContextProvider>
+        <App />
+      </SocketContextProvider>
+    </JobStoreContextProvider>
+  </StoreContextProvider>
+</BrowserRouter>
+
 )

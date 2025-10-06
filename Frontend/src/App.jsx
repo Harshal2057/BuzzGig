@@ -1,98 +1,45 @@
-import Hero from "./components/Hero";
-import Navbar from "./components/Navbar";
-import Marquee from "react-fast-marquee";
-import { assets } from "./assets/assets.js";
-import WhatweDo from "./components/WhatweDo";
-import WhatAreWe from "./components/WhatAreWe";
-import TextScreen from "./components/TextScreen.jsx";
-import Footer from "./components/Footer.jsx";
-import Testimonals from "./components/Testimonals.jsx";
-import Searching from "./components/Searching.jsx";
+import {  Routes, Route , useLocation } from "react-router-dom";
+import Homepage from "./pages/Homepage";
+import Pricing from "./pages/Pricing";
+import Navbar from "./components/Navbar.jsx";
+import NavbarSec from "./components/NavbarSec.jsx";
+import Authentication from "./components/Authentication.jsx";
+import ChooseRole from "./pages/ChooseRole.jsx";
+import  { Toaster } from 'react-hot-toast';
+import FreelancerProfile from "./pages/FreelancerProfile.jsx";
+import FreelancerDashboard from "./pages/FreelancerDashboard.jsx";
+import ClientDashboard from "./pages/ClientDashboard.jsx";
+import PostJob from "./pages/PostJob.jsx";
+import ClientJobs from "./pages/ClientJobs.jsx";
+import JobListings from "../src/pages/JobListings.jsx"
+import ClientChat from "./components/Chatting/ClientChat.jsx";
 
 function App() {
-  const skills = [
-    "Web Development",
-    "UI/UX Design", 
-    "SEO Optimization",
-    "Content Writing",
-    "Graphic Design",
-    "Video Editing",
-  ];
 
-  return (
-    <main className=" min-h-screen w-screen overflow-x-hidden bg-blue-75">
-      {/* Navbar */}
-      <Navbar />
-      
-      {/* Hero Section */}
-      <Hero />
-      
-      {/* Fixed Marquee strip (between Hero & WhatweDo) */}
-      <div 
-        className="absolute z-30 -mt-14 rotate-[2deg] w-full overflow-hidden"
-        style={{
-          backgroundColor: "#CAFA08",
-          height: "80px", // Set fixed height
-        }}
-      >
-        <Marquee 
-          speed={90} 
-          pauseOnHover={true} 
-          gradient={false}
-          style={{
-            height: "80px",
-            display: "flex",
-            alignItems: "center",
-            overflow: "hidden"
-          }}
-        >
-          {skills.map((skill, index) => (
-            <div
-              key={index}
-              className="flex items-center"
-              style={{
-                marginRight: "40px",
-                height: "80px",
-                display: "flex",
-                alignItems: "center",
-                gap: "20px",
-              }}
-            >
-              <span
-                style={{
-                  color: "#24251E",
-                  fontSize: window.innerWidth < 640 ? "44px" : "60px",
-                  fontFamily: "'Anton', sans-serif",
-                  fontWeight: "600",
-                  lineHeight: "1",
-                  whiteSpace: "nowrap",
-                }}
-              >
-                {skill}
-              </span>
-              <img 
-                src={assets.bullet} 
-                alt="bullet"
-                style={{
-                  height: "auto",
-                  maxHeight: "40px",
-                  width: "auto"
-                }}
-              />
-            </div>
-          ))}
-        </Marquee>
-      </div>
-      
-      {/* Other Sections */}
-      <WhatweDo />
-      <WhatAreWe />
-      <Searching />
-      <TextScreen />
-      <Testimonals />
-      <Footer />
-    </main>
-  );
+  const location = useLocation()
+
+const hideNavbar = ["/auth", "/choose-role" , "/freelancer-dashboard" , "/client-dashboard" , "/client-job" , "/client-chats" ].includes(location.pathname);
+
+
+
+    return <div>
+        <Toaster />
+        {!hideNavbar && <Navbar />}
+
+      <Routes>
+        <Route path="/" element={<Homepage />} />
+        <Route path="/pricing" element={<Pricing />} />
+        <Route path="/auth" element={<Authentication />} />
+        <Route path="/choose-role" element={<ChooseRole />} />
+        <Route path="/freelancer-profile" element={<FreelancerProfile />} />
+        <Route path="/freelancer-dashboard" element={<FreelancerDashboard />} />
+        <Route path="/client-dashboard" element={<ClientDashboard />} />
+        <Route path="/post-job" element={<PostJob />} />
+        <Route path="/client-job" element={<ClientJobs />} />
+        <Route path="/all-jobs" element={<JobListings />} />
+        <Route path="/client-chats" element={<ClientChat />} />
+      </Routes>
+    </div>
 }
 
 export default App;

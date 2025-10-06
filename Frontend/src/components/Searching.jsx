@@ -67,7 +67,7 @@ const Searching = () => {
       <div className="flex flex-wrap gap-10 p-2">
             {
                     jobFields.map((job , index) => {
-                        return <Cards img={job.image} title={job.title} Desccription={job.description} index={index} />
+                        return <Cards key={index} img={job.image} title={job.title} Desccription={job.description} index={index} />
                     })
             }
       </div>

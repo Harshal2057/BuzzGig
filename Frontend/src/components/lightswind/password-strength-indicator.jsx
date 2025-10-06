@@ -1,0 +1,166 @@
+import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
+import { useState, useEffect, useRef } from "react";
+import { cn } from "../../lib/utils";
+import { Input } from "./input";
+import { Label } from "./label";
+import { Eye, EyeOff, Check, X } from "lucide-react";
+
+// Password strength calculation based on common rules
+const calculateStrength = (password) => {
+  if (!password) return { score: 0, level: "empty" };
+  let score = 0;
+
+  if (password.length > 5) score += 1;
+  if (password.length > 8) score += 1;
+  if (/[A-Z]/.test(password)) score += 1;
+  if (/[a-z]/.test(password)) score += 1;
+  if (/[0-9]/.test(password)) score += 1;
+  if (/[^A-Za-z0-9]/.test(password)) score += 1;
+
+  let level = "empty";
+  if (score === 0) level = "empty";
+  else if (score <= 2) level = "weak";
+  else if (score <= 4) level = "medium";
+  else if (score <= 5) level = "strong";
+  else level = "very-strong";
+
+  return { score, level };
+};
+
+// Colors for different strength levels
+const strengthColors = {
+  empty: "bg-gray-200",
+  weak: "bg-red-500",
+  medium: "bg-orange-500",
+  strong: "bg-green-500",
+  "very-strong": "bg-emerald-500",
+};
+
+// Text labels for different strength levels
+const strengthLabels = {
+  empty: "Empty",
+  weak: "Weak",
+  medium: "Medium",
+  strong: "Strong",
+  "very-strong": "Very Strong",
+};
+
+export function PasswordStrengthIndicator({
+  value,
+  className,
+  label = "Password",
+  showScore = true,
+  showScoreNumber = false,
+  onChange,
+  onStrengthChange,
+  placeholder = "Enter your password",
+  showVisibilityToggle = true,
+  inputProps,
+}) {
+  const [password, setPassword] = useState(value || "");
+  const [showPassword, setShowPassword] = useState(false);
+  const { score, level } = calculateStrength(password);
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    if (onStrengthChange) {
+      onStrengthChange(level);
+    }
+  }, [level, onStrengthChange]);
+
+  const handleChange = (e) => {
+    const newValue = e.target.value;
+    setPassword(newValue);
+    if (onChange) onChange(newValue);
+  };
+
+  const toggleVisibility = () => {
+    setShowPassword(!showPassword);
+    setTimeout(() => {
+      if (inputRef.current) inputRef.current.focus();
+    }, 0);
+  };
+
+  return (
+    <div className={cn("space-y-2", className)}>
+      {label && (
+        <div className="flex justify-between items-center">
+          <Label htmlFor="password"></Label>
+          {showScoreNumber && (
+            <span className="text-xs text-muted-foreground">
+              {Math.floor((score / 6) * 10)}/10
+            </span>
+          )}
+        </div>
+      )}
+
+      <div className="relative border-2 border-gray-50 rounded-full !text-md !focus:outline-none">
+        <Input
+          ref={inputRef}
+          id="password"
+          type={showPassword ? "text" : "password"}
+          value={password}
+          onChange={handleChange}
+          placeholder={placeholder}
+          className={cn(
+            "pr-10 rounded-full bg-gray-200  font-outfit !focus:outline-none",
+            inputProps?.className // ✅ merge external overrides
+          )}
+          {...inputProps}
+        />
+
+        {showVisibilityToggle && (
+          <button
+            type="button"
+            onClick={toggleVisibility}
+            className="absolute right-2 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+            aria-label={showPassword ? "Hide password" : "Show password"}
+          >
+            {showPassword ? (
+              <EyeOff className="h-5 w-5" />
+            ) : (
+              <Eye className="h-5 w-5" />
+            )}
+          </button>
+        )}
+
+        {password && (
+          <div className="absolute right-10 top-1/2 -translate-y-1/2">
+            <div
+              className={cn(
+                "w-6 h-6 rounded-full flex items-center justify-center",
+                level === "weak"
+                  ? "bg-red-500"
+                  : level === "medium"
+                  ? "bg-orange-500"
+                  : "bg-green-500"
+              )}
+            >
+              {level === "weak" ? (
+                <X className="h-4 w-4 text-white" />
+              ) : (
+                <Check className="h-4 w-4 text-white" />
+              )}
+            </div>
+          </div>
+        )}
+      </div>
+
+      <div className="h-1.5 w-full bg-gray-100 rounded-full overflow-hidden flex gap-0.5">
+        {Array.from({ length: 4 }).map((_, i) => (
+          <div
+            key={i}
+            className={cn(
+              "h-full flex-1 rounded-full transition-all duration-300",
+              i < Math.min(Math.ceil(score / 1.5), 4)
+                ? strengthColors[level]
+                : "bg-gray-200"
+            )}
+          />
+        ))}
+      </div>
+
+
+    </div>
+  );
+}

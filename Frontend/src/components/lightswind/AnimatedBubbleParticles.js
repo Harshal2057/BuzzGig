@@ -1,7 +1,7 @@
 "use client";
 import { jsx as _jsx, jsxs as _jsxs } from "react/jsx-runtime";
 import { useEffect, useRef, useState, useCallback } from "react";
-import { cn } from "../lib/utils"; // Assuming this is a utility like clsx or classnames
+import { cn } from "../../lib/utils"; // Assuming this is a utility like clsx or classnames
 const AnimatedBubbleParticles = ({ className, backgroundColor = "#edf3f8", // Default fallback background color
 particleColor = "#3e82f7", particleSize = 30, spawnInterval = 180, height = "100vh", // Default to 100vh for full viewport height
 width = "100vw", // Default to 100vw for full viewport width

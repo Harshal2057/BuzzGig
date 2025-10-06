@@ -4,7 +4,6 @@ import Client from "../models/Client.js";
 const postJob = async (req, res) => {
   try {
     const user = req.user;
-
    
     if (!user) {
       return res.status(401).json({
@@ -22,10 +21,10 @@ const postJob = async (req, res) => {
 
     const client = await Client.findOne({ userId: user._id });
 
-    const { title, description, tags, mode, location, salaryType, budget } = req.body;
+    const { title, description, tags, skills , mode, location, experienceLevel , salaryType, budget, duration , deadline } = req.body;
 
 
-    if (!title || !description || !tags || !mode || !salaryType || !budget) {
+    if (!title || !description || !tags || !skills || !mode || !experienceLevel || !salaryType || !budget || !duration) {
       return res.status(400).json({
         success: false,
         message: "Please fill all the required fields",
@@ -37,10 +36,14 @@ const postJob = async (req, res) => {
       title,
       description,
       tags,
+      skills,
       mode,
       location,
+      experienceLevel,
       salaryType,
       budget,
+      duration,
+      deadline,
       postedBy:client._id
     });
 
