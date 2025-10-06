@@ -3,7 +3,7 @@ import { assets } from "../assets/assets";
 import { IoSearchOutline } from "react-icons/io5";
 import { JobStoreContext } from "../context/JobStore";
 import AllJobCard from "../components/AllJobCard";
-import JobDisplay from "../components/jobDisplay.jsx";
+import JobDisplay from "../components/JobDisplay.jsx"
 import { RxCross2 } from "react-icons/rx";
 import Chat from "../components/Chatting/Chat";
 import { StoreContext } from "../context/StoreContext.jsx";
